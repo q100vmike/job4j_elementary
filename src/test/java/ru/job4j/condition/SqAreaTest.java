@@ -29,7 +29,6 @@ class SqAreaTest {
         int p = 100;
         double k = 50;
         double out = SqArea.square(p, k);
-        //System.out.println(out);
         assertThat(out).isEqualTo(expected, withPrecision(0.01));
     }
 }
