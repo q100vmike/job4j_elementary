@@ -7,7 +7,7 @@ public class ArrayDefinition {
         float[] prices = new float[40];
 
         System.out.println("Размер массива равен: " + ages.length);
-        System.out.println("Размер массива равен: " + prices.length);
         System.out.println("Размер массива равен: " + surnames.length);
+        System.out.println("Размер массива равен: " + prices.length);
     }
 }
