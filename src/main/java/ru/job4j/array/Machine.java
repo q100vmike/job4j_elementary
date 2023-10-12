@@ -11,12 +11,14 @@ public class Machine {
         int exch = money - price;
 
         for (int i = 0; i < coins.length; i++) {
-            while (coins[i] <= exch && exch != 0) {
+            while (coins[i] <= exch) {
                 exch = exch - coins[i];
                 rsl[size] = coins[i];
                 size++;
             }
-            if (exch == 0) break;
+            if (exch == 0) {
+                break;
+            }
         }
         return Arrays.copyOf(rsl, size);
     }
