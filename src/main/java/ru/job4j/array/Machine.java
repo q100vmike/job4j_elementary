@@ -15,7 +15,7 @@ public class Machine {
                 rsl[size] = i;
                 size++;
             }
-            if (price == 0) {
+            if (money == 0) {
                 break;
             }
         }
