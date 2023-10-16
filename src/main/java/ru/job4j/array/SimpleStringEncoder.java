@@ -9,20 +9,12 @@ public class SimpleStringEncoder {
             if (symbol == input.charAt(i)) {
                 counter++;
             } else {
-                if (counter > 1) {
-                    result += "" + symbol + counter;
-                } else {
-                    result += "" + symbol;
-                }
+                result += (counter > 1) ? "" + symbol + counter : "" + symbol;
                 symbol = input.charAt(i);
                 counter = 1;
             }
         }
-        if (counter > 1) {
-            result += "" + symbol + counter;
-        } else {
-            result += "" + symbol;
-        }
+        result += (counter > 1) ? "" + symbol + counter : "" + symbol;
         return result;
     }
 }
