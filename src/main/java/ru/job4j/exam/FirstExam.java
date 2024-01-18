@@ -7,21 +7,23 @@ public class FirstExam {
         int i = 0;
         int tmp;
         boolean negflag = arr[arr.length - 1] <= 0;
-        arr[0] *= arr[0];
+      //  arr[0] *= arr[0];
 
         while (j != i) {
-            arr[j] *= arr[j];
-            if (arr[i]  > arr[j]) {
-                tmp = arr[j];
-                arr[j] = arr[i];
+          //  arr[j] *= arr[j];
+            if (arr[i] * arr[i] > arr[j] * arr[j]) {
+                tmp = arr[j] * arr[j];
+                arr[j] = arr[i] * arr[i];
                 arr[i] = tmp;
                 j--;
                 if (tmp == 0 && i != j || negflag && i != j) {
-                    i++;
+
                     arr[i] *= arr[i];
+                    i++;
                 }
             } else {
-                j--;
+              //  j--;
+                i++;
             }
         }
         return arr;

@@ -6,6 +6,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FirstExamTest {
 
     @Test
+    public void firstExamRepeat() {
+        int[] data = new int[]{-5, -3, -2, 1};
+        int[] result = FirstExam.arrayExpon(data);
+        int[] expected = new int[]{1, 4, 9, 9};
+        assertThat(result).containsExactly(expected);
+    }
+
+    @Test
+    public void firstExamAllMinusNoNul() {
+        int[] data = new int[]{-7, -5, -3, -2, -1};
+        int[] result = FirstExam.arrayExpon(data);
+        int[] expected = new int[]{1, 4, 9, 25, 49};
+        assertThat(result).containsExactly(expected);
+    }
+
+    @Test
+    public void firstExamAllMinus() {
+        int[] data = new int[]{-4, -3, -2, -1, 0};
+        int[] result = FirstExam.arrayExpon(data);
+        int[] expected = new int[]{0, 1, 4, 9, 16};
+        assertThat(result).containsExactly(expected);
+    }
+
+    @Test
     public void firstExamOne1() {
         int[] data = new int[]{-3, -2, 1, 4, 5};
         int[] result = FirstExam.arrayExpon(data);
