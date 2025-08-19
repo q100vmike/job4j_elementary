@@ -40,7 +40,7 @@ class SmallestRangeFinderTest {
         int[] nums = {1, 2, 4, 5, 6, 7};
         int k = 4;
         int[] result = findSmallestRange(nums, k);
-        int[] expected = {0,3};
+        int[] expected = {0, 3};
         assertThat(result).containsExactly(expected);
     }
 
@@ -49,7 +49,7 @@ class SmallestRangeFinderTest {
         int[] nums = {2, 2, 4, 5, 6, 7};
         int k = 4;
         int[] result = findSmallestRange(nums, k);
-        int[] expected = {0,3};
+        int[] expected = {0, 3};
         assertThat(result).containsExactly(expected);
     }
 }
