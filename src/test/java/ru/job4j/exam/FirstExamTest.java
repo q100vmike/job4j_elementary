@@ -7,17 +7,17 @@ class FirstExamTest {
 
     @Test
     public void firstExamRepeat() {
-        int[] data = new int[]{-5, -3, -2, 1};
+        int[] data = new int[]{-5, -7, -8, 9};
         int[] result = FirstExam.arrayExpon(data);
-        int[] expected = new int[]{1, 4, 9, 9};
+        int[] expected = new int[]{25, 49, 64, 81};
         assertThat(result).containsExactly(expected);
     }
 
     @Test
     public void firstExamAllMinusNoNul() {
-        int[] data = new int[]{-7, -5, -3, -2, -1};
+        int[] data = new int[]{-3, -5, -6, -2, -1};
         int[] result = FirstExam.arrayExpon(data);
-        int[] expected = new int[]{1, 4, 9, 25, 49};
+        int[] expected = new int[]{1, 4, 9, 25, 36};
         assertThat(result).containsExactly(expected);
     }
 

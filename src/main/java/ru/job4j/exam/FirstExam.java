@@ -3,27 +3,36 @@ package ru.job4j.exam;
 public class FirstExam {
 
     public static int[] arrayExpon(int[] arr) {
-        int j = arr.length - 1;
+        int j = 1;
         int i = 0;
+        int n = arr.length - 1;
         int tmp;
-        boolean negflag = arr[arr.length - 1] <= 0;
-      //  arr[0] *= arr[0];
+        boolean counter = true;
+        boolean contineFlag = false;
 
-        while (j != i) {
-          //  arr[j] *= arr[j];
-            if (arr[i] * arr[i] > arr[j] * arr[j]) {
-                tmp = arr[j] * arr[j];
-                arr[j] = arr[i] * arr[i];
+        for (int k = 0; k <= n; k++) {
+            arr[k] *= arr[k];
+        }
+        while (counter && n > 0) {
+            if (arr[i] > arr[j]) {
+                tmp = arr[j];
+                arr[j] = arr[i];
                 arr[i] = tmp;
-                j--;
-                if (tmp == 0 && i != j || negflag && i != j) {
-
-                    arr[i] *= arr[i];
-                    i++;
+                contineFlag = true;
+            }
+            j++;
+            i++;
+            if (j > n) {
+                if (contineFlag) {
+                    j = 1;
+                    i = 0;
+                    counter = true;
+                    contineFlag = false;
+                } else {
+                    counter = false;
                 }
             } else {
-              //  j--;
-                i++;
+                counter = true;
             }
         }
         return arr;
