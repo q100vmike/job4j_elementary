@@ -12,7 +12,7 @@ public class SmallestRangeFinder {
         while ((left <= right) && (right < n)) {
             if (left != right) {
                 if (nums[left] != nums[right]) {
-                    left++;
+                    //left++;
                     right--;
                 } else {
                     left = right - 1;
@@ -37,6 +37,14 @@ public class SmallestRangeFinder {
         int[] nums = {1, 2, 2, 2, 3, 3};
         int k = 3;
         int[] result = findSmallestRange(nums, k);
+        if (result != null) {
+            System.out.println("Наименьший диапазон с " + k + " различными элементами: " + Arrays.toString(result));
+        } else {
+            System.out.println("Такой диапазон не существует.");
+        }
+        nums = new int[]{1, 2, 2, 3, 4, 5};
+        k = 4;
+        result = findSmallestRange(nums, k);
         if (result != null) {
             System.out.println("Наименьший диапазон с " + k + " различными элементами: " + Arrays.toString(result));
         } else {
