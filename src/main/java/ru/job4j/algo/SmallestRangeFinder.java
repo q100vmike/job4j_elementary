@@ -9,10 +9,20 @@ public class SmallestRangeFinder {
         int left = 0, right = k - 1;
         int[] result = new int[]{left, right};
 
-        while ((left <= right) && (right < n)) {
+        while ((left <= right + 1) && (right < n)) {
+            if (left > right) {
+                if ((nums[left + 1] == nums[left]) || (nums[right - 1] == nums[right])) {
+                    left = right--;
+                    right = left + k - 1;
+                } else {
+                    result[0] = --right;
+                    result[1] = ++left;
+                    break;
+                }
+            }
             if (left != right) {
                 if (nums[left] != nums[right]) {
-                    //left++;
+                    left++;
                     right--;
                 } else {
                     left = right - 1;

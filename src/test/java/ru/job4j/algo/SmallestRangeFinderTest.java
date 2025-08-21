@@ -45,11 +45,11 @@ class SmallestRangeFinderTest {
     }
 
     @Test
-    public void whenk4SmallestRangeIs0and4() {
+    public void whenk4SmallestRangeIs1and4() {
         int[] nums = {2, 2, 4, 5, 6, 7};
         int k = 4;
         int[] result = findSmallestRange(nums, k);
-        int[] expected = {0, 3};
+        int[] expected = {1, 4};
         assertThat(result).containsExactly(expected);
     }
 }
