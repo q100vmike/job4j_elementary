@@ -32,6 +32,6 @@ public class LongestUniqueSubstring {
                 .max(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue);
 
-        return strWithMaxLen.get();
+        return strWithMaxLen.isPresent() ? strWithMaxLen.get() : "";
     }
 }
