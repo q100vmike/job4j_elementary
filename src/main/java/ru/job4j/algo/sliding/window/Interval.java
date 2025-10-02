@@ -27,13 +27,25 @@ class Interval {
             }
             Comparator<Interval> comparatorInterval = Comparator.comparingInt(i -> i.end);
 
-            var activeIntervals = new PriorityQueue(comparatorInterval);
+            PriorityQueue<Interval> activeIntervals = new PriorityQueue(comparatorInterval);
             int maxOverlap = 0;
             int maxStart = -1;
             int maxEnd = -1;
 
             for (Interval interval : intervals) {
-                 //interval.toString();
+                activeIntervals.add(interval);
+            }
+
+            maxStart = activeIntervals.poll().start;
+            maxEnd = activeIntervals.poll().end;
+
+            for (Interval activeInterval : activeIntervals) {
+                if (maxStart < activeInterval.start) {
+                    maxStart = activeInterval.start;
+                }
+                if (maxEnd < activeInterval.end) {
+                    maxEnd = activeInterval.end;
+                }
             }
 
             return new int[] {
