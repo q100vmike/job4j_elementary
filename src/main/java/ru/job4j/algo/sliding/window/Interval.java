@@ -1,9 +1,6 @@
 package ru.job4j.algo.sliding.window;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class Interval {
     int start;
@@ -22,34 +19,41 @@ class Interval {
     public class Main {
 
         public static int[] findMaxOverlapInterval(List<Interval> intervals) {
-            if (intervals.isEmpty()) {
+            if (intervals.isEmpty() || intervals.size() == 1) {
                 return new int[] {-1, -1};
             }
-            Comparator<Interval> comparatorInterval = Comparator.comparingInt(i -> i.end);
 
-            PriorityQueue<Interval> activeIntervals = new PriorityQueue(comparatorInterval);
+            Comparator<Interval> comparatorIntervalEnd = Comparator.comparingInt(i -> i.end);
+            Comparator<Interval> comparatorIntervalStart = Comparator.comparingInt(i -> i.start);
+            Collections.sort(intervals, comparatorIntervalStart);
+            PriorityQueue<Interval> activeIntervals = new PriorityQueue(comparatorIntervalEnd);
             int maxOverlap = 0;
             int maxStart = -1;
-            int maxEnd = -1;
+            int minEnd = -1;
 
             for (Interval interval : intervals) {
-                activeIntervals.add(interval);
-            }
-
-            maxStart = activeIntervals.poll().start;
-            maxEnd = activeIntervals.poll().end;
-
-            for (Interval activeInterval : activeIntervals) {
-                if (maxStart < activeInterval.start) {
-                    maxStart = activeInterval.start;
+                while (activeIntervals.size() > 0 && activeIntervals.peek().end < interval.start) {
+                    activeIntervals.poll();
                 }
-                if (maxEnd < activeInterval.end) {
-                    maxEnd = activeInterval.end;
+                activeIntervals.add(interval);
+
+                if (activeIntervals.size() > maxOverlap) {
+                    maxOverlap = activeIntervals.size();
+                    //
+                    for (Interval activeInterval : activeIntervals) {
+                        maxStart = Math.max(maxStart, activeInterval.start);
+                        minEnd = Math.min(minEnd, activeInterval.end);
+                    }
+                    if (maxStart > minEnd) {
+                        // Если нет общего пересечения, возвращаем первый интервал из кучи
+                        maxStart = activeIntervals.peek().start;
+                        minEnd = activeIntervals.peek().end;
+                    }
                 }
             }
 
             return new int[] {
-                    maxStart, maxEnd
+                    maxStart, minEnd
             };
         }
 
