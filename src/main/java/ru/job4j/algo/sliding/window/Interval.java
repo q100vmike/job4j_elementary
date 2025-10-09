@@ -66,7 +66,6 @@ class Interval {
             intervals.add(new Interval(7, 8));
 
             int[] result = findMaxOverlapInterval(intervals);
-
             System.out.println("Interval that overlaps the maximum number of intervals: [" + result[0] + ", " + result[1] + "]");
         }
     }
