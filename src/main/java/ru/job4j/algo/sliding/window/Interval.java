@@ -19,10 +19,12 @@ class Interval {
     public class Main {
 
         public static int[] findMaxOverlapInterval(List<Interval> intervals) {
-            if (intervals.isEmpty() || intervals.size() == 1) {
+            if (intervals.isEmpty() || intervals.size() == 0) {
                 return new int[] {-1, -1};
             }
-
+            if (intervals.size() == 1) {
+                return new int[] {intervals.get(0).start, intervals.get(0).end};
+            }
             Comparator<Interval> comparatorIntervalEnd = Comparator.comparingInt(i -> i.end);
             Comparator<Interval> comparatorIntervalStart = Comparator.comparingInt(i -> i.start);
             Collections.sort(intervals, comparatorIntervalStart);
@@ -39,19 +41,18 @@ class Interval {
 
                 if (activeIntervals.size() > maxOverlap) {
                     maxOverlap = activeIntervals.size();
-                    //
                     for (Interval activeInterval : activeIntervals) {
-                        maxStart = Math.max(maxStart, activeInterval.start);
-                        minEnd = Math.min(minEnd, activeInterval.end);
+                        if (Math.max(maxStart, activeInterval.start) != Math.min(minEnd, activeInterval.end)) {
+                            maxStart = Math.max(maxStart, activeInterval.start);
+                            minEnd = Math.min(minEnd, activeInterval.end);
+                        }
                     }
                     if (maxStart > minEnd) {
-                        // Если нет общего пересечения, возвращаем первый интервал из кучи
                         maxStart = activeIntervals.peek().start;
                         minEnd = activeIntervals.peek().end;
                     }
                 }
             }
-
             return new int[] {
                     maxStart, minEnd
             };
